@@ -86,6 +86,6 @@ function shortestSeekTimeFirst(request, head, n) {
         seeksequence[i] = head;
     }
 
-    seeksequence[n] = seeksequence[n - 1]; 
+    //seeksequence[n] = seeksequence[n - 1]; 
     return seeksequence;
 }
