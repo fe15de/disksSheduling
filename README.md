@@ -24,7 +24,7 @@ This project was developed as a part of the coursework for the Operating Systems
 ## How to Use
 
 1. Clone this repository to your local machine.
-2. Open index.html in your web browser.
+2. Open main.html in your web browser.
 3. Enter the sequence of disk requests into the input field.
 4. Click on the "SUBMIT" button to visualize the disk movement based on the SSTF algorithm.
 
