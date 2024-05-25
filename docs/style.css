@@ -36,3 +36,9 @@ button {
     margin: 0 auto;
     text-align: center;
 }
+
+#seekSequenceOutput {
+    margin-top: 10px;
+    font-size: large;
+    text-align: center;
+}

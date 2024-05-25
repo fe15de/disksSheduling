@@ -1,4 +1,3 @@
-
 let chart;
 
 function getNums() {
@@ -7,51 +6,53 @@ function getNums() {
     
     var nums = arr.map((_, index) => index * -1);
 
-    arr = shortestSeekTimeFirst(arr, arr[0], arr.length);
+    var seeksequence = shortestSeekTimeFirst(arr, arr[0], arr.length);
     
-    console.log(arr)
+    console.log(seeksequence);
 
     if (chart) {
-    chart.destroy();
+        chart.destroy();
     }
 
     const ctx = document.getElementById('myChart').getContext('2d');
     chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: nums,
-        datasets: [{
-        label: 'SEQUENCE SSTF',
-        data: arr,
-        borderWidth: 1,
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        }]
-    },
-    options: {
-        indexAxis: 'y',
-        scales: {
-        x: {
-            beginAtZero: true,
-            position: 'top'
+        type: 'line',
+        data: {
+            labels: nums,
+            datasets: [{
+                label: 'SEQUENCE SSTF',
+                data: seeksequence,
+                borderWidth: 1,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    position: 'top'
+                }
+            }
         }
-        }
-    }
     });
+
+    
+    const seekSequenceOutput = document.getElementById('seekSequenceOutput');
+    seekSequenceOutput.innerHTML = `Seek Sequence: ${seeksequence.join(', ')}`;
 }
-
-
 
 function calculatedifference(request, head, diff, n) {
     for (let i = 0; i < n; i++) {
         diff[i][0] = Math.abs(head - request[i]);
     }
 }
- 
+
 function findMIN(diff, n) {
     let index = -1;
     let minimum = 1e9;
- 
+
     for (let i = 0; i < n; i++) {
         if (!diff[i][1] && minimum > diff[i][0]) {
             minimum = diff[i][0];
@@ -60,32 +61,31 @@ function findMIN(diff, n) {
     }
     return index;
 }
- 
+
 function shortestSeekTimeFirst(request, head, n) {
     if (n == 0) {
-        return;
+        return [];
     }
-  
+
     let diff = new Array(n);
     for (let i = 0; i < n; i++) {
-        diff[i] = new Array(2);
+        diff[i] = new Array(2).fill(0);
     }
- 
+
     let seekcount = 0;
- 
     let seeksequence = new Array(n + 1);
- 
+
     for (let i = 0; i < n; i++) {
         calculatedifference(request, head, diff, n);
         let index = findMIN(diff, n);
         diff[index][1] = 1;
- 
+
         seekcount += diff[index][0];
- 
+
         head = request[index];
         seeksequence[i] = head;
     }
- 
+
+    seeksequence[n] = seeksequence[n - 1]; 
     return seeksequence;
 }
- 
