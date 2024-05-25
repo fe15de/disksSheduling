@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISK SCHEDULE</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="chartMenu">
+        <p> DISK MOVEMENT</p>
+    </div>
+
+    <form id="form" onsubmit="event.preventDefault(); getNums();">
+        <label for="sequence">Enter Sequence of Disk Requests (Separated by commas)</label>
+        <input type="text" id="sequence">
+        <button type="submit">SUBMIT</button>
+        <div id="inputContainer"></div>
+    </form>
+
+    <div id="chartCard">
+        <div id="chartBox">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</body>
+</html>
